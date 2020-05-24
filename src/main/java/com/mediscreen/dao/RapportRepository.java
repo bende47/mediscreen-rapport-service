@@ -10,8 +10,12 @@ import com.mediscreen.entities.Rapport;
 
 @Repository
 public interface RapportRepository extends MongoRepository<Rapport, String>{
+	
 	@Query("{ 'idPatient' : ?0 },{ 'risque' : ?0 }")
-	Rapport findByRapportLibelle(String idPatient, String risque);
+	Rapport findByRapport(String idPatient, String risque);
+	
+	@Query("{ 'idPatient' : ?0 }")
+	Rapport findByIdRapport(String idPatient);
 	
 	@Query(value="{ idPatient : ?0 }", sort = "{id : -1}")
 	List<Rapport> findRapportByOrderByIdDesc(String idpatient);

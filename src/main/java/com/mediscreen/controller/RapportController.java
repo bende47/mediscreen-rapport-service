@@ -32,9 +32,9 @@ public class RapportController {
 	 * @throws ParseException 
 	 */
 	
-	@PostMapping(value="addRapport/add")
-	public Rapport addRapport(@RequestBody Rapport rapport) {
-		return rapportService.add(rapport);
+	@GetMapping(value="addRapport/add/{idPatient}/{age}/{risques}")
+	public Rapport addRapport(@PathVariable("idPatient") String idPatient,@PathVariable("age") int age,@PathVariable("risques") String risques) {
+		return rapportService.add(idPatient,age,risques);
 	}
 	
 	/**

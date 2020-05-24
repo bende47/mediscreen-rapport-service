@@ -11,7 +11,7 @@ public interface RapportService {
 	 * @param rapport
 	 * @return Rapport patient
 	 */
-	public Rapport add(Rapport rapport);
+	public Rapport add(String idPatient,int age, String risque);
 	
 	/**
 	 * 

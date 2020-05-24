@@ -1,6 +1,5 @@
 package com.mediscreen.service;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -14,44 +13,49 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class RapportServiceImpl implements RapportService{
-	
+public class RapportServiceImpl implements RapportService {
+
 	@Autowired
 	private RapportRepository rapportRepository;
-	
+
 	@Override
-	public Rapport add(Rapport rapport) {
+	public Rapport add(String idPatient, int age, String risques) {
 		try {
 			
-			Rapport rap = rapportRepository.findByRapportLibelle(rapport.getIdPatient(), rapport.getRisque());
-			
-			if(rap==null) {
+			Rapport rapport = rapportRepository.findByRapport(idPatient, risques);
+
+			if (rapport != null) {
+				rapport.setAge(age);
+				rapport.setIdPatient(idPatient);
 				rapport.setDateCreation(new Date());
+				rapport.setRisque(risques);
 				return rapportRepository.save(rapport);
-			}else {
-				return null;
 			}
 			
+				Rapport rap = new Rapport();
+				rap.setAge(age);
+				rap.setIdPatient(idPatient);
+				rap.setDateCreation(new Date());
+				rap.setRisque(risques);
+				return rapportRepository.save(rap);
+
+
 		} catch (Exception e) {
-			log.error("Error ajout rapport:"+e.toString());
+			log.error("Error ajout rapport:" + e.toString());
 			return null;
 		}
 	}
 
 	@Override
-	public List<Rapport> allRapportPatient(String idPatient) {		
+	public List<Rapport> allRapportPatient(String idPatient) {
 		return rapportRepository.findRapportByOrderByIdDesc(idPatient);
 	}
 
 	@Override
 	public Rapport findRapportPatient(String idPatient) {
-		Rapport rapport = rapportRepository.findById(idPatient).orElseThrow(() -> new IllegalArgumentException("Rapport introuvable:" + idPatient));
-		log.info("Rapport:"+rapport.toString());
+		Rapport rapport = rapportRepository.findByIdRapport(idPatient);
+		log.info("Rapport:" + rapport.toString());
 		return rapport;
 	}
 
-	
-
-	
-	
 }

@@ -17,7 +17,7 @@ public class Rapport {
 	@Id
 	private String id;
 	private String idPatient;
-	private Date age;
+	private int age;
 	private String risque;
 	private Date dateCreation;	
 	
