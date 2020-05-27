@@ -37,15 +37,7 @@ public class RapportController {
 		return rapportService.add(idPatient,age,risques);
 	}
 	
-	/**
-	 * Methode permettant d'afficher la liste des rapports d'un patient
-	 */
-	
-	@GetMapping(value="rapport/all/{id}")
-	public List<Rapport> all(@PathVariable("id") String id) {
-		return rapportService.allRapportPatient(id);
-	}
-	
+		
 	/**
 	 * Methode permettant de rechercher un rapport
 	 */
@@ -53,6 +45,11 @@ public class RapportController {
 	@GetMapping(value="rapport/find/{id}")
 	public Rapport findRapport(@PathVariable("id") String id) {
 		return  rapportService.findRapportPatient(id);
+	}
+	
+	@DeleteMapping(value="rapport/deleteRapport/{id}")
+	public void deleteRapport(@PathVariable("id") String id) {
+	   rapportService.deleteRapportPatient(id);
 	}
 	
 	

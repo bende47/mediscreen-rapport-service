@@ -1,7 +1,6 @@
 package com.mediscreen.service;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,16 +45,19 @@ public class RapportServiceImpl implements RapportService {
 		}
 	}
 
-	@Override
-	public List<Rapport> allRapportPatient(String idPatient) {
-		return rapportRepository.findRapportByOrderByIdDesc(idPatient);
-	}
+	
 
 	@Override
 	public Rapport findRapportPatient(String idPatient) {
 		Rapport rapport = rapportRepository.findByIdRapport(idPatient);
 		log.info("Rapport:" + rapport.toString());
 		return rapport;
+	}
+	
+	@Override
+	public void deleteRapportPatient(String idPatient) {
+		Rapport rapport = rapportRepository.findByIdRapport(idPatient);
+		rapportRepository.delete(rapport);
 	}
 
 }

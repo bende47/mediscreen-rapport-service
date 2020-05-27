@@ -40,7 +40,7 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 	@Override
 	public Declencheurs update(Declencheurs declencheurs, String id) {
 		try {
-			Declencheurs declencheurs2 = find(id);
+			Declencheurs declencheurs2 = declencheursRepository.findDeclencheurById(id);
 
 			if (declencheurs2 != null) {
 				declencheurs2.setLibelle(declencheurs.getLibelle());
@@ -57,8 +57,8 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 
 	@Override
 	public Declencheurs find(String id) {
-		Declencheurs declencheurs2 = declencheursRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Declencheur introuvable:" + id));
+		Declencheurs declencheurs2 = declencheursRepository.findDeclencheurById(id);
+
 		log.info("Declencheur = " + declencheurs2.toString());
 		return declencheurs2;
 	}
@@ -75,7 +75,7 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 
 	@Override
 	public void delete(String id) {
-		Declencheurs declencheurs2 = find(id);
+		Declencheurs declencheurs2 = declencheursRepository.findDeclencheurById(id);
 		log.info("Declencheur supprimé succès : " + declencheurs2.getLibelle());
 		declencheursRepository.delete(declencheurs2);
 	}
