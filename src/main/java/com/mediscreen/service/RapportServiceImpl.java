@@ -46,8 +46,9 @@ public class RapportServiceImpl implements RapportService {
 	@Override
 	public Rapport findRapportPatient(String idPatient) {
 		Rapport rapport = rapportRepository.findByIdRapport(idPatient);
-		log.info("Rapport:" + rapport.toString());
-		return rapport;
+			log.info("Rapport:" + rapport.toString());
+			return rapport;
+
 	}
 	
 	@Override
