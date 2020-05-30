@@ -19,7 +19,6 @@ public class RapportServiceImpl implements RapportService {
 
 	@Override
 	public Rapport add(String idPatient, int age, String risques) {
-		try {
 			
 			Rapport rapport = rapportRepository.findByRapport(idPatient, risques);
 
@@ -39,10 +38,7 @@ public class RapportServiceImpl implements RapportService {
 				return rapportRepository.save(rap);
 
 
-		} catch (Exception e) {
-			log.error("Error ajout rapport:" + e.toString());
-			return null;
-		}
+		
 	}
 
 	

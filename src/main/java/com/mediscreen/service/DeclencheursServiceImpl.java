@@ -20,7 +20,6 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 
 	@Override
 	public Declencheurs add(Declencheurs declencheurs) {
-		try {
 
 			Declencheurs declencheurs2 = declencheursRepository.findByLibelle(declencheurs.getLibelle());
 
@@ -31,15 +30,11 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 				return null;
 			}
 
-		} catch (Exception e) {
-			log.error("Erreur lors d'ajout d'un declencheur:" + e.toString());
-			return null;
-		}
+		
 	}
 
 	@Override
 	public Declencheurs update(Declencheurs declencheurs, String id) {
-		try {
 			Declencheurs declencheurs2 = declencheursRepository.findDeclencheurById(id);
 
 			if (declencheurs2 != null) {
@@ -49,10 +44,7 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 			}
 			return declencheurs2;
 
-		} catch (Exception e) {
-			log.error("Erreur lors de la modification d'un declencheur:" + e.toString());
-			return null;
-		}
+		
 	}
 
 	@Override
@@ -65,12 +57,8 @@ public class DeclencheursServiceImpl implements DeclencheursService {
 
 	@Override
 	public List<Declencheurs> all() {
-		try {
 			return declencheursRepository.findAll();
-		} catch (Exception e) {
-			log.info("Erreur lors de recuperation de la liste " + e);
-			return null;
-		}
+		
 	}
 
 	@Override
